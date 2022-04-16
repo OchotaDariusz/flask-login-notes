@@ -7,7 +7,8 @@
     <ul class="list-group list-group-flush" id="notes">
         {% for note in user.notes %}
             <li class="list-group-item alert-dismissible">
-                {{ note.data }}
+                <p style="display: inline-block;">{{ note.data }}</p>
+                <a href="/edit-note/{{ note.id }}"><i class="fa-solid fa-pen-to-square"></i></a>
                 <button type="button" class="btn-close" onclick="deleteNote({{ note.id }})">
                 </button>
             </li>
@@ -17,7 +18,7 @@
         <label for="note">Write Your note here:</label>
         <textarea name="note" id="note" class="form-control"></textarea>
         <br>
-        <div class="add-note">
+        <div class="add-edit-note">
             <button type="submit" class="btn btn-primary">Add Note</button>
         </div>
     </form>
