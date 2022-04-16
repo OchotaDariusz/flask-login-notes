@@ -24,8 +24,7 @@ def create_app():
     from .models import User, Note
 
     app.app_context().push()
-    create_database(app, User, 'user')
-    create_database(app, Note, 'note')
+    create_database(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -38,39 +37,12 @@ def create_app():
     return app
 
 
-def create_database(app, model, table_name):
-    # CREATE ALL TABLES
-    # inspector = inspect(db.engine)
-    # print('Creating database...')
-    # if not (inspector.has_table('user')) or \
-    #         not (inspector.has_table('note')):
-    #     db.create_all(app=app)
-    #     print('Done')
-    # else:
-    #     print('Database already exists. Skipping...')
-    #
-    # CREATE SINGLE TABLES
-    # from .models import User, Note
-    #
-    # inspector = inspect(db.engine)
-    # if not (inspector.has_table('user')):
-    #     print('Creating database table User...')
-    #     User.__table__.create(db.session.bind, checkfirst=True)
-    #     print('Done')
-    # else:
-    #     print('Database already exists. Skipping...')
-    #
-    # if not (inspector.has_table('note')):
-    #     print('Creating database table Note...')
-    #     Note.__table__.create(db.session.bind, checkfirst=True)
-    #     print('Done')
-    # else:
-    #     print('Database already exists. Skipping...')
-
+def create_database(app):
     inspector = inspect(db.engine)
-    if not (inspector.has_table(table_name)):
-        print(f'Creating database table {table_name}...')
-        model.__table__.create(db.session.bind, checkfirst=True)
+    print('Creating database...')
+    if not (inspector.has_table('user')) or \
+            not (inspector.has_table('note')):
+        db.create_all(app=app)
         print('Done')
     else:
         print('Database already exists. Skipping...')
