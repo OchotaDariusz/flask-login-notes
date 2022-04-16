@@ -9,14 +9,13 @@
             <li class="list-group-item alert-dismissible">
                 <p style="display: inline-block;">{{ note.data }}</p>
                 <a href="/edit-note/{{ note.id }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                <button type="button" class="btn-close" onclick="deleteNote({{ note.id }})">
-                </button>
+                <a href="#" onclick="deleteNote({{ note.id }});"><i class="fa-solid fa-circle-xmark"></i></a>
             </li>
         {% endfor %}
     </ul>
     <form method="post">
         <label for="note">Write Your note here:</label>
-        <textarea name="note" id="note" class="form-control"></textarea>
+        <textarea name="note" id="note" class="form-control" rows="10" cols="50"></textarea>
         <br>
         <div class="add-edit-note">
             <button type="submit" class="btn btn-primary">Add Note</button>
